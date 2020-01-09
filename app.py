@@ -8,6 +8,7 @@ from skimage import io
 
 Image.MAX_IMAGE_PIXELS = 933120000
 
+
 def convert_pdf(file_path):
     tempDir = tempfile.mkdtemp()
     """ Extract individual PDF pages and save as ppm (Unfortunately it can only
@@ -43,6 +44,7 @@ def convert_pdf(file_path):
     """save merged image (If we could load libtiff we could compress the tiff files 
     at this step. Since I cannot get libtiff to install on windows we will have 
     huge files)"""
+    newFile = file_path.replace('.pdf', '.tiff')
     newFile = file_path.replace('.PDF', '.tiff')
     merged_image.save(newFile, format='TIFF')
 
@@ -61,5 +63,5 @@ if __name__ == '__main__':
     pth = tkinter.filedialog.askdirectory()
     if len(pth) > 5:
         for filename in os.listdir(pth):
-            if filename.lower().endswith(".pdf"):
+            if filename.endswith(".pdf"):
                 convert_pdf(os.path.join(pth, filename))
