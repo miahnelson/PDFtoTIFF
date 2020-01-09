@@ -6,7 +6,7 @@ import shutil
 import skimage
 from skimage import io
 
-
+Image.MAX_IMAGE_PIXELS = 933120000
 
 def convert_pdf(file_path):
     tempDir = tempfile.mkdtemp()
